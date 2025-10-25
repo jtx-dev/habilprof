@@ -21,5 +21,13 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        // Agregar los seeders de HabilProf
+        $this->call([
+            ProfesoresDINFSeeder::class,
+            AlumnosSeeder::class,
+            EmpresasSeeder::class,
+            // HabilitacionesSeeder::class, // Opcional: si quieres datos de habilitaciones
+        ]);
     }
 }
