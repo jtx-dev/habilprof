@@ -1,33 +1,37 @@
 <?php
+// database/seeders/DatabaseSeeder.php
 
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
+    public function run()
     {
-        // User::factory(10)->create();
+        // Crear profesores de prueba con RUT COMPLETO (incluye dígito verificador)
+        $profesores = [
+            [
+                'rut_profesor_dnf' => 123456789, // RUT completo: 12.345.678-9
+                'nombre_profesor_dnf' => 'Profesor Administrador',
+            ],
+            [
+                'rut_profesor_dnf' => 187654329, // RUT completo: 18.765.432-9  
+                'nombre_profesor_dnf' => 'Profesor Ejemplo 1',
+            ],
+            [
+                'rut_profesor_dnf' => 165432187, // RUT completo: 16.543.218-7
+                'nombre_profesor_dnf' => 'Profesor Ejemplo 2',
+            ],
+        ];
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        foreach ($profesores as $profesor) {
+            User::create($profesor);
+        }
 
-        // Agregar los seeders de HabilProf
         $this->call([
-            ProfesoresDINFSeeder::class,
-            AlumnosSeeder::class,
-            EmpresasSeeder::class,
-            // HabilitacionesSeeder::class, // Opcional: si quieres datos de habilitaciones
+            // TestModelsSeeder::class,
         ]);
     }
 }
